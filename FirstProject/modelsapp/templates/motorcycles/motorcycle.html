@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <div class="banner-crop"><img class="banner" src="{% static 'banner-bike.jpg' %}" alt="banner"></div>
+    <div class="side">
+        {% include 'filters/filter.html' %}
+        <a href="{% url 'index' %}"> <button type="button" class="catalog"><img src='{% static "car-button.jpg" %}' alt="car"><p>View Car Catalog -></p></button></a>
+    </div>
+   <main>
+        <section>
+            {% for bike in bike_list %}
+                <div class="card_index">
+                    <h3>{{ bike.brand }} {{ bike.model }}</h3>
+                    <h6>
+                        {{ bike.year }}
+                    </h6>
+                    <p class="description">{{ bike.description|truncatechars:100 }}</p>
+                    <div class="image-div">
+                        <img src="{{MEDIA_URL}}{{ bike.image }}" alt="bike">
+                    </div>
+                    <div class="info-card">
+                        <p style="opacity: 60%">Date Added: {{ bike.date_added|date:"M d, Y" }}</p>
+                        <p class="price">${{ bike.price }}</p>
+                        <a href="{% url 'bike_info' bike.pk %}"><button type="button">Discover</button></a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="pages">
+                {% include 'navbar/pages.html' %}
+            </div>
+        </section>
+   </main>
+
+{% endblock %}

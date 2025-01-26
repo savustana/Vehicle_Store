@@ -1,0 +1,32 @@
+{% load static %}
+{# templates/filter.html #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="get" class="filters">
+            <label for="year">Filter By Year</label>
+            <label for="year_max" class="filter_label">
+            <input type="radio" id="year_max" name="year_max" value="Max">  Sort Older to Newer</label>
+            <label for="year_min" class="filter_label">
+            <input type="radio" id="year_min" name="year_min" value="Min">  Sort Newer to Older</label>
+
+            <label for="price">Filter by Price</label>
+            <label for="price_max" class="filter_label">
+            <input type="radio" id="price_max" name="price_max" placeholder="price">  Sort Low to High</label>
+            <label for="price_min" class="filter_label">
+            <input type="radio" id="price_min" name="price_min" placeholder="price">  Sort High to Low</label>
+
+            <label for="price_min" style="font-size: 15px">Custom</label>
+            <label for="price_min_value" class="filter_label">Min Price:
+            <input type="text" id="price_min_value" name="price_min_val" ></label>
+            <label for="price_max_value" class="filter_label">Max Price:
+            <input type="text" id="price_max_value" name="price_max_val" ></label>
+
+            <input type="submit" id="submit" class="apply" name="submit" value="Apply">
+    </form>
+</body>
+</html>

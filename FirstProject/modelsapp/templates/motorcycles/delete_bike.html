@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{%  load static %}
+{% block content %}
+    <h2>Are you sure {{ bike }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        <a href="{% url 'index' %}">Cancel</a>
+    </form>
+{% endblock %}

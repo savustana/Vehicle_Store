@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container py-5">
+            <div class="card">
+                <h2 class="title">{{ car.brand }} {{ car.model }}</h2>
+                <h6>
+                    {{ car.year }}
+                </h6>
+
+                <p><img src="{{MEDIA_URL}}{{ car.image }}" alt="car1"></p>
+                <p>
+                {% for star in stars %}
+                    {% if star <= car.rate %}
+                        <span>&#9733;</span>
+                    {% else %}
+                        <span>&#9734;</span>
+                    {% endif %}
+                {% endfor %}
+                </p>
+                <p>{{ car.description }}</p>
+                <p class="price">${{ car.price }}</p>
+                {% if user.is_staff == True %}
+                    <h6><a href="{% url 'delete_car' car.pk %}">Delete</a></h6>
+                {% endif %}
+
+                <div class="details">
+                    <h3  style="font-size: 45px; font-weight: lighter"><button>{{ car.engine }}</button> | <button>{{ car.fuel_system }}</button> | <button>{{ car.transmission }}</button> | <button>{{ car.speed }} mph</button></h3>
+                </div>
+                <video controls="controls" width="800" height="600">
+                    <source src="{{MEDIA_URL}}{{ car.video }}">
+                </video>
+            </div>
+    </div>
+{% endblock %}

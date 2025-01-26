@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <div class="banner-crop"><img class="banner" src="{% static 'baner_audi.jpg' %}" alt="baner"></div>
+        <div class="side">{% include 'filters/filter.html' %}
+            <a href="{% url 'motorcycles' %}"> <button type="button" class="catalog"><img src='{% static "bike-button.jpg" %}' alt="bike"><p>View Motorcycle Catalog -></p></button></a>
+        </div>
+    <main>
+        <section>
+
+        {% for car in car_list %}
+
+            <div class="card_index">
+                <h3>{{ car.brand }} {{ car.model }}</h3>
+                <h6>
+                    {{ car.year }}
+                </h6>
+                <p class="description">{{ car.description|truncatechars:100 }}</p>
+                <div class="image-div">
+                    <img src="{{MEDIA_URL}}{{ car.image }}" alt="car1">
+                    </div>
+                <div class="info-card">
+                <p style="opacity: 60%">Date Added: {{ car.date_added|date:"M d, Y" }}</p>
+                    <p class="price">${{ car.price }}</p>
+            <a href="{% url 'info_car' car.pk %}"><button type="button">Discover</button></a></div>
+
+                </div>
+
+        {% endfor %}
+
+
+<div class="pages">
+    {% include 'navbar/pages.html' %}
+    </div>
+
+        </section>
+    </main>
+
+
+{% endblock %}

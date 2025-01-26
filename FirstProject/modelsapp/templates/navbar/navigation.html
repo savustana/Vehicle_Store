@@ -1,0 +1,42 @@
+{% load static %}
+{# templates/navigation.html #}
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="msg {{ msg.tags }}">
+        {{ msg }}
+      </div>
+    {% endfor %}
+  {% endif %}
+<header>
+    <h1><a class="home" href="{% url 'index' %}"><i class="fa-solid fa-car"></i>  AUDI</a></h1>
+
+        <nav>
+            <ul>
+                <form method="get" class="search-bar">
+                <input type="text" name="search" class="search-type" size="32" placeholder=" Search">
+                <button type="submit" class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+
+                <li><a href="{% url 'about' %}">About Us</a></li>
+
+                {% if user.is_staff == True %}
+                    <li><a href="{% url 'add_car' %}">Add Car</a> </li>
+                    <li><a href="{% url 'add_bike' %}">Add Motorcycle</a> </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a> </li>
+                    <li><a href="{% url 'stats' %}">Stats</a> </li>
+                    <li><a href="#">Welcome, {{ user.username }}</a> </li>
+                {% else %}
+
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    <footer>
+        <p>&copy; 2024 GoITeens.</p>
+    </footer>
+</header>

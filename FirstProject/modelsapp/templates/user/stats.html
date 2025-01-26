@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container py-5">
+        <h1>Your Stats</h1>
+        <div class="card">
+            <p><b>{{ username }}</b></p><br>
+        <p>Your Visits: {{ visits }}</p>
+    </div>
+    </div>
+{% endblock %}
